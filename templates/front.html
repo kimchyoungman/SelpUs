@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>강의 요약/문제 생성 프로젝트</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href='../static/css/style.css'>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index_style.css') }}">
+
+</head>
+<body>
+<div class="top-bar">
+        <div class="nav">
+            <a style= "color:rgb(192,153,147); font-size: 32px">SelpUs</a>
+        </div>
+    </div>
+
+
+<div class="link">
+    <a>문제를 생성하고 싶은 영상의 링크를 입력해주세요!</a>
+<br>
+<label class="url_input">
+<form action="/download" method="post">
+    <input type="url" name="video_url" placeholder="https://example.com">
+    <input type="submit" value="Download">
+    </form>
+</label>
+</div>
+
+<div id="json-output"></div>
+
+<script>
+    // JSON 파일 불러오기
+    fetch('questions_answers.json')
+        .then(response => response.json())
+        .then(data => {
+            var jsonOutput = document.getElementById("json-output");
+            jsonOutput.textContent = JSON.stringify(data, null, 4);
+        });
+</script>
+
+</body>
+</html>
